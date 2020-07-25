@@ -2,7 +2,7 @@ const express = require('express')
 const boom = require('boom')
 const Result = require('../models/Result')
 // const { route } = require('./user')
-
+const Result = require('../models/Result')
 
 const jwtAuth = require('./jwt')
 const userRouter = require('./user')

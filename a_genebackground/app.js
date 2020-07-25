@@ -24,5 +24,5 @@ app.use('/', router)
 const server = app.listen(5000, function() {
   const { address, port } = server.address()
   // console.log('HTTP服务启动成功：http://%s:%s', address, port)
-  console.log('HTTP服务启动成功：http://localhost:%s', port)
+  // console.log('HTTP服务启动成功：http://localhost:%s', port)
 })

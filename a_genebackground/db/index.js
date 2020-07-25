@@ -95,7 +95,26 @@ function queryOne(sql) {
   })
 }
 
+function and(where, k, v){
+  if(where === 'where'){
+    return `${where} ${k}='${v}'`
+  }else{
+    return `${where} and ${k}='${v}'`
+  }
+}
+
+function andLike(where, k, v){
+  if(where === 'where'){
+    return `${where} ${k} like '%${v}%'`
+  }else{
+    return `${where} and ${k} like '%${v}%'`
+  }
+}
+
+
+
 function insertArticle(Article) {
+  const { ArticleTitle, ArticleAuthor, ArticleSort, ArticleOutline, ArticleContent } = Article;
   return new Promise((resolve, reject) => {
     // const { title, author , sort, outline, content } = Article
     console.log(Article);
@@ -127,5 +146,8 @@ module.exports = {
   querySql,
   queryOne,
   insertArticle,
-  updateSql
+  updateSql,
+  and,
+  andLike
+
 }
