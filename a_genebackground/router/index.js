@@ -1,21 +1,29 @@
 const express = require('express')
 const boom = require('boom')
+const Result = require('../models/Result')
+// const { route } = require('./user')
+const Result = require('../models/Result')
+
+const jwtAuth = require('./jwt')
 const userRouter = require('./user')
 const articleRouter = require('./article/index')
-const jwtAuth = require('./jwt')
-const Result = require('../models/Result')
+const iconRouter = require('./icon')
 
 // 注册路由
 const router = express.Router()
 
+// 使用中间件
 router.use(jwtAuth)
 
-router.get('/', function(req, res) {
+// 路径
+router.get('/', function (req, res) {
   res.send('genejob-background')
 })
 
+// 路径,引用文件， 调用真实路由
 router.use('/user', userRouter)
 router.use('/article', articleRouter)
+router.use('/admin/api',iconRouter)
 
 /**
  * 集中处理404请求的中间件
@@ -35,7 +43,9 @@ router.use((req, res, next) => {
 router.use((err, req, res, next) => {
   console.log(err)
   if (err.name && err.name === 'UnauthorizedError') {
-    const { status = 401, message } = err
+    const {
+      status = 401, message
+    } = err
     new Result(null, 'Token验证失败', {
       error: status,
       errMsg: message

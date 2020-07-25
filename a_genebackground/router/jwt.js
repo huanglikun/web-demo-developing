@@ -10,5 +10,12 @@ module.exports = jwt({
   path: [
     '/',
     '/user/login',
+    '/admin/api/upload',
+    '/submit',
+    '/upload',
+    '/article/list',
+    '/article/detail',
+    '/article/setup'
   ]
 })
+
